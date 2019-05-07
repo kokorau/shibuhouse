@@ -2,8 +2,16 @@
   <div>
     <app-menu></app-menu>
     <article class="article">
-      <p style="font-size: 36px">SHIBUHOUSE is selling for 500,000,000 yen.</p>
-      <p style="font-size: 18px">渋家、5億で販売中。</p>
+      <p class="text">
+        If you want to get in touch or want to know more, please contact us.
+      </p>
+      <a href="mailto:shibuhouseinfo@gmail.com">
+        <p class="info">shibuhouseinfo@gmail.com</p>
+      </a>
+      <p class="text">CALL ME!! CALL ME!! CALL ME!! CALL ME!! CALL ME!!</p>
+      <a href="tel:080-3367-6582">
+        <p class="info">080-3367-6582</p>
+      </a>
     </article>
     <app-footer></app-footer>
   </div>
@@ -16,7 +24,7 @@ import AppFooter from "../components/AppFooter";
 @Component({
   components: { AppFooter, AppMenu }
 })
-export default class About extends Vue {}
+export default class Contact extends Vue {}
 </script>
 
 <style scoped lang="sass">
