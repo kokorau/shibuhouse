@@ -5,16 +5,14 @@
       <p style="font-size: 36px">SHIBUHOUSE is selling for 500,000,000 yen.</p>
       <p style="font-size: 18px">渋家、5億で販売中。</p>
     </article>
-    <app-footer></app-footer>
   </div>
 </template>
 <script>
 import { Component, Vue } from "vue-property-decorator";
 import AppMenu from "@/components/AppMenu.vue";
-import AppFooter from "../components/AppFooter";
 
 @Component({
-  components: { AppFooter, AppMenu }
+  components: { AppMenu }
 })
 export default class About extends Vue {}
 </script>

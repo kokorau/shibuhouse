@@ -1,8 +1,7 @@
 <template>
   <div class="home">
     <AppMenu></AppMenu>
-    <ImageLayout :images="images"></ImageLayout>
-    <AppFooter></AppFooter>
+    <ImageLayout class="images" :images="images"></ImageLayout>
   </div>
 </template>
 
@@ -10,11 +9,9 @@
 import { Component, Vue } from "vue-property-decorator";
 import ImageLayout from "@/components/ImageLayout.vue";
 import AppMenu from "@/components/AppMenu.vue";
-import AppFooter from "@/components/AppFooter.vue";
 
 @Component({
   components: {
-    AppFooter,
     AppMenu,
     ImageLayout
   }
@@ -59,3 +56,5 @@ export default class Home extends Vue {
   init() {}
 }
 </script>
+
+<style scoped lang="sass"></style>

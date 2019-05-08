@@ -13,16 +13,14 @@
         <p class="info">080-3367-6582</p>
       </a>
     </article>
-    <app-footer></app-footer>
   </div>
 </template>
 <script>
 import { Component, Vue } from "vue-property-decorator";
 import AppMenu from "@/components/AppMenu.vue";
-import AppFooter from "../components/AppFooter";
 
 @Component({
-  components: { AppFooter, AppMenu }
+  components: { AppMenu }
 })
 export default class Contact extends Vue {}
 </script>
