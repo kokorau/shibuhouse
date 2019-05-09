@@ -1,5 +1,6 @@
 <template>
   <div class="articles">
+    <slot></slot>
     <article class="card" v-for="img of images" :key="img.src" :to="img.to">
       <img class="img" :src="img.src" :alt="img.title" />
       <div class="info">

@@ -5,12 +5,22 @@
         <router-link :to="{ name: 'home' }">
           <img class="logo" src="@/assets/logo.svg" />
         </router-link>
-        <router-link class="link" :to="{ name: 'about' }">ABOUT</router-link>
-        <router-link class="link" :to="{ name: 'member' }">MEMBER</router-link>
-        <router-link class="link" :to="{ name: 'contact' }"
-          >CONTACT</router-link
-        >
-        <!--    <router-link class="nav-link" :to="{ name: 'event' }">EVENT</router-link>-->
+        <button class="toggle">
+          <svg width="40" height="40">
+            <rect x="5" y="8" width="30" height="8" fill="#151515"></rect>
+            <rect x="5" y="24" width="30" height="8" fill="#151515"></rect>
+          </svg>
+        </button>
+        <div class="menu">
+          <router-link class="link" :to="{ name: 'about' }">ABOUT</router-link>
+          <router-link class="link" :to="{ name: 'member' }"
+            >MEMBER</router-link
+          >
+          <router-link class="link" :to="{ name: 'contact' }"
+            >CONTACT</router-link
+          >
+          <!--    <router-link class="nav-link" :to="{ name: 'event' }">EVENT</router-link>-->
+        </div>
       </div>
 
       <div class="outer-links">
@@ -48,7 +58,7 @@ export default class AppMenu extends Vue {}
 .outer-links
   transform: rotate(270deg)
   top: 120px
-  right: 60px
+  right: 4vw
   display: flex
   flex-flow: column
   justify-content: flex-end
@@ -57,15 +67,34 @@ export default class AppMenu extends Vue {}
   width: 180px
 .link
   position: relative
-.page-links > .link
+.page-links .link
   font-size: 70px
   font-weight: bold
   margin: 20px 0 0 0
   position: relative
+.menu
+  display: flex
+  flex-direction: column
+  justify-content: flex-start
+  align-items: flex-start
+.toggle
+  display: none
 .outer-links > .link
   font-size: 28px
   margin-top: 20px
   position: relative
+.toggle
+  display: none
+  background: none
+  border: none
+  position: fixed
+  right: 30px
+  top: 30px
+  width: 60px
+  height: 60px
+  justify-content: center
+  align-items: center
+  padding: 0
 .link::before
   content: ''
   z-index: -1
@@ -79,6 +108,13 @@ export default class AppMenu extends Vue {}
 .link:hover::before
   width: 100%
 @media screen and (max-width: 480px)
-  .nav
+  .toggle
+    display: flex
+  .menu, .outer-links
     display: none
+  .page-links
+    top: 20px
+    left: 20px
+  .logo
+    width: 80px
 </style>

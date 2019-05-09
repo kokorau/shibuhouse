@@ -1,7 +1,9 @@
 <template>
   <div class="member">
     <AppMenu></AppMenu>
-    <ImageLayout :images="images"></ImageLayout>
+    <ImageLayout :images="images">
+      <h1 class="title">MEMBER</h1>
+    </ImageLayout>
   </div>
 </template>
 
@@ -43,4 +45,10 @@ export default class Member extends Vue {
 }
 </script>
 
-<style scoped lang="sass"></style>
+<style scoped lang="sass">
+.title
+  font-size: 42px
+  padding: 4px
+  margin-bottom: 24px
+  border-bottom: solid 8px #151515
+</style>
