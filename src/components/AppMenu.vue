@@ -45,6 +45,12 @@ export default class AppMenu extends Vue {}
 </script>
 
 <style scoped lang="sass">
+.nav
+  position: fixed
+  top: 0
+  bottom: 0
+  left: 0
+  right: 0
 .page-links, .outer-links
   position: fixed
   z-index: 2
