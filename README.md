@@ -1,4 +1,5 @@
 # shibuhouse
+[![Netlify Status](https://api.netlify.com/api/v1/badges/386eca73-d7c1-4fd9-8658-34a154432bff/deploy-status)](https://app.netlify.com/sites/shibuhouse/deploys)
 
 ## Project setup
 ```
