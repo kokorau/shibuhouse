@@ -13,9 +13,9 @@
         </button>
         <div class="menu">
           <router-link class="link" :to="{ name: 'about' }">ABOUT</router-link>
-          <router-link class="link" :to="{ name: 'member' }"
-            >MEMBER</router-link
-          >
+          <!--          <router-link class="link" :to="{ name: 'member' }"-->
+          <!--            >MEMBER</router-link-->
+          <!--          >-->
           <router-link class="link" :to="{ name: 'contact' }"
             >CONTACT</router-link
           >
@@ -51,9 +51,9 @@ export default class AppMenu extends Vue {}
   bottom: 0
   left: 0
   right: 0
+  z-index: 2
 .page-links, .outer-links
   position: fixed
-  z-index: 2
 .page-links
   top: 80px
   left: 60px

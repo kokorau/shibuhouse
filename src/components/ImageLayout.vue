@@ -2,7 +2,7 @@
   <div class="articles">
     <slot></slot>
     <article class="card" v-for="img of images" :key="img.src" :to="img.to">
-      <img class="img" :src="img.src" :alt="img.title" />
+      <img class="img" v-lazy="img.src" :alt="img.title" />
       <div class="info">
         <h2 class="title" v-if="img.title">{{ img.title }}</h2>
         <p class="description" v-if="img.text">{{ img.text }}</p>

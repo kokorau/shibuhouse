@@ -19,18 +19,18 @@ import AppMenu from "@/components/AppMenu.vue";
 export default class Home extends Vue {
   // TODO: TYPE
   images = [
-    {
-      src: require("@/assets/img1.jpg")
-    },
+    // {
+    //   src: require("@/assets/img1.jpg")
+    // },
     {
       src: require("@/assets/img2.jpg")
     },
     {
       src: require("@/assets/img3.jpg")
     },
-    {
-      src: require("@/assets/img4.jpg")
-    },
+    // {
+    //   src: require("@/assets/img4.jpg")
+    // },
     {
       src: require("@/assets/img5.jpg")
     },
@@ -40,18 +40,18 @@ export default class Home extends Vue {
     {
       src: require("@/assets/img7.jpg")
     },
-    {
-      src: require("@/assets/img8.jpg")
-    },
+    // {
+    //   src: require("@/assets/img8.jpg")
+    // },
     {
       src: require("@/assets/img9.jpg")
     },
     {
       src: require("@/assets/img10.jpg")
-    },
-    {
-      src: require("@/assets/img11.jpg")
     }
+    // {
+    //   src: require("@/assets/img11.jpg")
+    // }
   ];
   init() {}
 }
