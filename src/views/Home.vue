@@ -6,9 +6,16 @@
 </template>
 
 <script lang="ts">
+import * as Contentful from "contentful";
 import { Component, Vue } from "vue-property-decorator";
 import ImageLayout from "@/components/ImageLayout.vue";
 import AppMenu from "@/components/AppMenu.vue";
+
+const client = Contentful.createClient({
+  space: "3phzeo0bdyyi",
+  accessToken:
+    "7e7552e8f2ba5ffef4f7330770c26536069c5e86c7066dd3540ab71244cf1884"
+});
 
 @Component({
   components: {
@@ -17,43 +24,20 @@ import AppMenu from "@/components/AppMenu.vue";
   }
 })
 export default class Home extends Vue {
-  // TODO: TYPE
-  images = [
-    // {
-    //   src: require("@/assets/img1.jpg")
-    // },
+  images: any = [
     {
-      src: require("@/assets/img2.jpg")
-    },
-    {
-      src: require("@/assets/img3.jpg")
-    },
-    // {
-    //   src: require("@/assets/img4.jpg")
-    // },
-    {
-      src: require("@/assets/img5.jpg")
-    },
-    {
-      src: require("@/assets/img6.jpg")
-    },
-    {
-      src: require("@/assets/img7.jpg")
-    },
-    // {
-    //   src: require("@/assets/img8.jpg")
-    // },
-    {
-      src: require("@/assets/img9.jpg")
-    },
-    {
-      src: require("@/assets/img10.jpg")
+      src: "https://thispersondoesnotexist.com/image"
     }
-    // {
-    //   src: require("@/assets/img11.jpg")
-    // }
   ];
-  init() {}
+  async mounted() {
+    const imageRef = await client.getEntries({
+      content_type: "home"
+    });
+    this.images = imageRef.items.map(i => ({
+      // webpsrc: i.fields.image.fields.file.url,
+      src: i.fields.image.fields.file.url
+    }));
+  }
 }
 </script>
 
