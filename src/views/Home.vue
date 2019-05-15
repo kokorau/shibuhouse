@@ -35,6 +35,7 @@ export default class Home extends Vue {
     });
     this.images = imageRef.items.map(i => ({
       // webpsrc: i.fields.image.fields.file.url,
+      // @ts-ignore
       src: i.fields.image.fields.file.url
     }));
   }
