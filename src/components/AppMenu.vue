@@ -1,32 +1,30 @@
 <template>
-  <div>
-    <nav class="nav">
-      <div class="page-links">
-        <router-link :to="{ name: 'home' }">
-          <img class="logo" src="@/assets/logo.svg" />
-        </router-link>
-        <button class="toggle">
-          <svg width="40" height="40">
-            <rect x="5" y="8" width="30" height="8" fill="#151515"></rect>
-            <rect x="5" y="24" width="30" height="8" fill="#151515"></rect>
-          </svg>
-        </button>
-        <div class="menu">
-          <router-link class="link" :to="{ name: 'about' }">ABOUT</router-link>
-          <!--          <router-link class="link" :to="{ name: 'member' }"-->
-          <!--            >MEMBER</router-link-->
-          <!--          >-->
-          <router-link class="link" :to="{ name: 'contact' }">CONTACT</router-link>
-          <!--    <router-link class="nav-link" :to="{ name: 'event' }">EVENT</router-link>-->
-        </div>
+  <nav class="nav">
+    <div class="page-links">
+      <router-link :to="{ name: 'home' }">
+        <img class="logo" src="@/assets/logo.svg" />
+      </router-link>
+      <button class="toggle">
+        <svg width="40" height="40">
+          <rect x="5" y="8" width="30" height="8" fill="#151515"></rect>
+          <rect x="5" y="24" width="30" height="8" fill="#151515"></rect>
+        </svg>
+      </button>
+      <div class="menu">
+        <router-link class="link" :to="{ name: 'about' }">ABOUT</router-link>
+        <!--          <router-link class="link" :to="{ name: 'member' }"-->
+        <!--            >MEMBER</router-link-->
+        <!--          >-->
+        <router-link class="link" :to="{ name: 'contact' }">CONTACT</router-link>
+        <!--    <router-link class="nav-link" :to="{ name: 'event' }">EVENT</router-link>-->
       </div>
+    </div>
 
-      <div class="outer-links">
-        <a class="link" href="https://twitter.com/shibuhouse" target="_blank">TWITTER</a>
-        <a class="link" href="https://www.instagram.com/shibuhouse_official/" target="_blank">INSTAGRAM</a>
-      </div>
-    </nav>
-  </div>
+    <div class="outer-links">
+      <a class="link" href="https://twitter.com/shibuhouse" target="_blank">TWITTER</a>
+      <a class="link" href="https://www.instagram.com/shibuhouse_official/" target="_blank">INSTAGRAM</a>
+    </div>
+  </nav>
 </template>
 
 <script lang="ts">
@@ -36,15 +34,9 @@ export default class AppMenu extends Vue {}
 </script>
 
 <style scoped lang="sass">
-.nav
-  position: fixed
-  top: 0
-  bottom: 0
-  left: 0
-  right: 0
-  z-index: 2
 .page-links, .outer-links
   position: fixed
+  z-index: 2
 .page-links
   top: 80px
   left: 60px
