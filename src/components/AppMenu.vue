@@ -4,13 +4,13 @@
       <router-link :to="{ name: 'home' }">
         <img class="logo" src="@/assets/logo.svg" />
       </router-link>
-      <button class="toggle">
+      <button class="toggle" @click="isOpen = !isOpen">
         <svg width="40" height="40">
           <rect x="5" y="8" width="30" height="8" fill="#151515"></rect>
           <rect x="5" y="24" width="30" height="8" fill="#151515"></rect>
         </svg>
       </button>
-      <div class="menu">
+      <div class="menu" v-if="width > 480 || isOpen">
         <router-link class="link" :to="{ name: 'about' }">ABOUT</router-link>
         <!--          <router-link class="link" :to="{ name: 'member' }"-->
         <!--            >MEMBER</router-link-->
@@ -20,7 +20,7 @@
       </div>
     </div>
 
-    <div class="outer-links">
+    <div class="outer-links" v-if="width > 480 || isOpen">
       <a class="link" href="https://twitter.com/shibuhouse" target="_blank">TWITTER</a>
       <a class="link" href="https://www.instagram.com/shibuhouse_official/" target="_blank">INSTAGRAM</a>
     </div>
@@ -30,7 +30,19 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 @Component({})
-export default class AppMenu extends Vue {}
+export default class AppMenu extends Vue {
+  isOpen = false
+  width = window.innerWidth
+  mounted() {
+    window.addEventListener('resize', this.updateWindow)
+  }
+  destoroyed() {
+    window.removeEventListener('resize', this.updateWindow)
+  }
+  updateWindow() {
+    this.width = window.innerWidth
+  }
+}
 </script>
 
 <style scoped lang="sass">
@@ -99,8 +111,6 @@ export default class AppMenu extends Vue {}
 @media screen and (max-width: 480px)
   .toggle
     display: flex
-  .menu, .outer-links
-    display: none
   .page-links
     top: 20px
     left: 20px
