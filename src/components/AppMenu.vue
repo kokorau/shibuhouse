@@ -16,30 +16,21 @@
           <!--          <router-link class="link" :to="{ name: 'member' }"-->
           <!--            >MEMBER</router-link-->
           <!--          >-->
-          <router-link class="link" :to="{ name: 'contact' }"
-            >CONTACT</router-link
-          >
+          <router-link class="link" :to="{ name: 'contact' }">CONTACT</router-link>
           <!--    <router-link class="nav-link" :to="{ name: 'event' }">EVENT</router-link>-->
         </div>
       </div>
 
       <div class="outer-links">
-        <a class="link" href="https://twitter.com/shibuhouse" target="_blank"
-          >TWITTER</a
-        >
-        <a
-          class="link"
-          href="https://www.instagram.com/shibuhouse_official/"
-          target="_blank"
-          >INSTAGRAM</a
-        >
+        <a class="link" href="https://twitter.com/shibuhouse" target="_blank">TWITTER</a>
+        <a class="link" href="https://www.instagram.com/shibuhouse_official/" target="_blank">INSTAGRAM</a>
       </div>
     </nav>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from 'vue-property-decorator'
 @Component({})
 export default class AppMenu extends Vue {}
 </script>

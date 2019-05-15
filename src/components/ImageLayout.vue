@@ -12,13 +12,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from 'vue-property-decorator'
 
 interface img {
-  src: string;
-  text?: string;
-  title?: string;
-  to?: string;
+  src: string
+  text?: string
+  title?: string
+  to?: string
 }
 
 @Component({

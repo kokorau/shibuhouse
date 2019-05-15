@@ -6,9 +6,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import ImageLayout from "@/components/ImageLayout.vue";
-import AppMenu from "@/components/AppMenu.vue";
+import { Component, Vue } from 'vue-property-decorator'
+import ImageLayout from '@/components/ImageLayout.vue'
+import AppMenu from '@/components/AppMenu.vue'
 
 @Component({
   components: {
@@ -20,10 +20,10 @@ export default class Event extends Vue {
   // TODO: TYPE
   images = [
     {
-      src: require("@/assets/event/img5.jpg"),
-      title: "KUNUGI potentials REIWA TO HEISEI"
+      src: require('@/assets/event/img5.jpg'),
+      title: 'KUNUGI potentials REIWA TO HEISEI'
     }
-  ];
+  ]
   init() {}
 }
 </script>

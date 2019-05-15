@@ -25,8 +25,8 @@
   </div>
 </template>
 <script>
-import { Component, Vue } from "vue-property-decorator";
-import AppMenu from "@/components/AppMenu.vue";
+import { Component, Vue } from 'vue-property-decorator'
+import AppMenu from '@/components/AppMenu.vue'
 
 @Component({
   components: { AppMenu }
