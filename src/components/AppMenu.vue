@@ -1,32 +1,41 @@
 <template>
   <nav class="nav" :class="{ active: width > 480 || isOpen }">
-    <button class="toggle" @click="isOpen = !isOpen">
-      <svg width="40" height="40">
-        <rect x="5" y="8" width="30" height="8" fill="#151515"></rect>
-        <rect x="5" y="24" width="30" height="8" fill="#151515"></rect>
-      </svg>
-    </button>
+    <menu-toggle @click="isOpen = !isOpen" :isOpen="isOpen || width <= 480"></menu-toggle>
+    <!-- MAIN MENU -->
     <div class="page-links">
       <router-link :to="{ name: 'home' }">
         <img class="logo" src="@/assets/logo.svg" />
       </router-link>
-      <router-link class="link" :to="{ name: 'about' }">ABOUT</router-link>
-      <!--          <router-link class="link" :to="{ name: 'member' }"-->
-      <!--            >MEMBER</router-link-->
-      <!--          >-->
-      <router-link class="link" :to="{ name: 'contact' }">CONTACT</router-link>
-      <!--    <router-link class="nav-link" :to="{ name: 'event' }">EVENT</router-link>-->
+      <div class="menu">
+        <router-link class="link" :to="{ name: 'about' }">
+          <border-text>ABOUT</border-text>
+        </router-link>
+        <router-link class="link" :to="{ name: 'contact' }">
+          <border-text>CONTACT</border-text>
+        </router-link>
+      </div>
     </div>
+    <!-- SNS -->
     <div class="outer-links">
-      <a class="link" href="https://twitter.com/shibuhouse" target="_blank">TWITTER</a>
-      <a class="link" href="https://www.instagram.com/shibuhouse_official/" target="_blank">INSTAGRAM</a>
+      <div class="menu">
+        <a class="link" href="https://twitter.com/shibuhouse" target="_blank">
+          <border-text>TWITTER</border-text>
+        </a>
+        <a class="link" href="https://www.instagram.com/shibuhouse_official/" target="_blank">
+          <border-text>INSTAGRAM</border-text>
+        </a>
+      </div>
     </div>
   </nav>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
-@Component({})
+import BorderText from '@/components/BorderText.vue'
+import MenuToggle from '@/components/MenuToggle.vue'
+@Component({
+  components: { MenuToggle, BorderText }
+})
 export default class AppMenu extends Vue {
   isOpen = false
   width = window.innerWidth
@@ -43,85 +52,73 @@ export default class AppMenu extends Vue {
 </script>
 
 <style scoped lang="sass">
-.page-links, .outer-links
+.nav
   position: fixed
-  z-index: 2
-.page-links
-  top: 80px
-  left: 60px
-.outer-links
-  transform: rotate(270deg)
-  top: 120px
-  right: 4vw
+  z-index: var(--z-nav)
+.page-links,
+.outer-links,
+.menu
   display: flex
   flex-flow: column
-  justify-content: flex-end
+  justify-content: flex-start
   align-items: flex-start
 .logo
   width: 180px
-.link
-  position: relative
+.page-links
+  position: fixed
+  top: 0
+  left: 0
+  margin: 6vh 0 0 6vw
+.outer-links
+  position: fixed
+  top: 0
+  right: 0
+  margin: 15vh 8vw 0 0
+.page-links > .menu
+  margin: 10% 0 0 0
+.outer-links > .menu
+  transform-origin: left top
+  transform: translateX(100%) rotate(90deg)
 .page-links .link
   font-size: 70px
-  font-weight: bold
-  margin: 20px 0 0 0
-  position: relative
-.menu
-  display: flex
-  flex-direction: column
-  justify-content: flex-start
-  align-items: flex-start
-.toggle
-  display: none
-.outer-links > .link
+  margin-bottom: 20px
+.outer-links .link
   font-size: 28px
-  margin-top: 20px
-  position: relative
-.toggle
-  display: none
-  background: none
-  border: none
-  position: fixed
-  right: 30px
-  top: 30px
-  width: 60px
-  height: 60px
-  justify-content: center
-  align-items: center
-  padding: 0
-.link::before
-  content: ''
-  z-index: -1
-  position: absolute
-  bottom: 10%
-  right: 0
-  width: 0
-  height: 20%
-  background: #151515
-  transition: 0.3s ease-out
-.link:hover::before
-  width: 100%
+  margin-bottom: 14px
 @media screen and (max-width: 480px)
-  .menu, .outer-links
-    display: none
-  .nav.active > .menu,
-  .nav.active > .outer-links
-    display: flex
-  .nav.active
-    z-index: 2
-    position: fixed
-    width: 100vw
-    height: 100vh
-    background: #ddd
-    display: flex
-    justify-content: center
-    align-items: center
-    flex-flow: column
-  .toggle
-    display: flex
   .page-links
-    top: 20px
-    left: 20px
+    position: relative
+  .outer-links
+    top: auto
+    bottom: 0
+    margin: 0 8vw 4vh 0
+  .outer-links > .menu
+    transform-origin: right top
+    transform: translateY(100%) rotate(90deg)
+  .link:not(.logo)
+    display: none
+  .page-links
+    margin: 20px 0 0 20px
+  .page-links > .menu
+    margin: 40px 0 0 0
+  .menu > .link
+    margin-bottom: 20px
   .logo
     width: 80px
+  .toggle
+    display: block
+  .nav.active
+    position: fixed
+    top: 0
+    right: 0
+    width: 100vw
+    height: 100vh
+    background: #d5d5d5
+  .nav.active .link
+    display: flex
+@media screen and (min-width: 481px) and (max-width: 768px)
+  .logo
+    width: 140px
+  .page-links .link
+    font-size: 54px
 </style>

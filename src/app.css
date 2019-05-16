@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP:900|Roboto:900');
 
+:root {
+    --z-nav: 101;
+    --z-nav-toggle: 102;
+}
+
 body {
     font-family: 'Roboto', 'Noto Sans JP', sans-serif;
     color: #151515;
