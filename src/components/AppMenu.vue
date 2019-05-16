@@ -68,17 +68,17 @@ export default class AppMenu extends Vue {
   position: fixed
   top: 0
   left: 0
-  margin: 6vh 0 0 6vw
+  margin: 10vh 0 0 3vw
 .outer-links
   position: fixed
   top: 0
   right: 0
-  margin: 15vh 8vw 0 0
+  margin: 10vh 6vw 0 0
 .page-links > .menu
   margin: 10% 0 0 0
 .outer-links > .menu
-  transform-origin: left top
-  transform: translateX(100%) rotate(90deg)
+  transform-origin: right bottom
+  transform: translateY(-100%) rotate(-90deg)
 .page-links .link
   font-size: 70px
   margin-bottom: 20px
