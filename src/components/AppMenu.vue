@@ -1,26 +1,23 @@
 <template>
-  <nav class="nav">
+  <nav class="nav" :class="{ active: width > 480 || isOpen }">
+    <button class="toggle" @click="isOpen = !isOpen">
+      <svg width="40" height="40">
+        <rect x="5" y="8" width="30" height="8" fill="#151515"></rect>
+        <rect x="5" y="24" width="30" height="8" fill="#151515"></rect>
+      </svg>
+    </button>
     <div class="page-links">
       <router-link :to="{ name: 'home' }">
         <img class="logo" src="@/assets/logo.svg" />
       </router-link>
-      <button class="toggle" @click="isOpen = !isOpen">
-        <svg width="40" height="40">
-          <rect x="5" y="8" width="30" height="8" fill="#151515"></rect>
-          <rect x="5" y="24" width="30" height="8" fill="#151515"></rect>
-        </svg>
-      </button>
-      <div class="menu" v-if="width > 480 || isOpen">
-        <router-link class="link" :to="{ name: 'about' }">ABOUT</router-link>
-        <!--          <router-link class="link" :to="{ name: 'member' }"-->
-        <!--            >MEMBER</router-link-->
-        <!--          >-->
-        <router-link class="link" :to="{ name: 'contact' }">CONTACT</router-link>
-        <!--    <router-link class="nav-link" :to="{ name: 'event' }">EVENT</router-link>-->
-      </div>
+      <router-link class="link" :to="{ name: 'about' }">ABOUT</router-link>
+      <!--          <router-link class="link" :to="{ name: 'member' }"-->
+      <!--            >MEMBER</router-link-->
+      <!--          >-->
+      <router-link class="link" :to="{ name: 'contact' }">CONTACT</router-link>
+      <!--    <router-link class="nav-link" :to="{ name: 'event' }">EVENT</router-link>-->
     </div>
-
-    <div class="outer-links" v-if="width > 480 || isOpen">
+    <div class="outer-links">
       <a class="link" href="https://twitter.com/shibuhouse" target="_blank">TWITTER</a>
       <a class="link" href="https://www.instagram.com/shibuhouse_official/" target="_blank">INSTAGRAM</a>
     </div>
@@ -52,10 +49,6 @@ export default class AppMenu extends Vue {
 .page-links
   top: 80px
   left: 60px
-  display: flex
-  flex-direction: column
-  justify-content: flex-start
-  align-items: flex-start
 .outer-links
   transform: rotate(270deg)
   top: 120px
@@ -109,6 +102,21 @@ export default class AppMenu extends Vue {
 .link:hover::before
   width: 100%
 @media screen and (max-width: 480px)
+  .menu, .outer-links
+    display: none
+  .nav.active > .menu,
+  .nav.active > .outer-links
+    display: flex
+  .nav.active
+    z-index: 2
+    position: fixed
+    width: 100vw
+    height: 100vh
+    background: #ddd
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-flow: column
   .toggle
     display: flex
   .page-links
