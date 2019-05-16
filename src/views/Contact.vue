@@ -9,7 +9,7 @@
           If you want to get in touch or want to know more, please contact us.
         </p>
 
-        <p class="detail">And, we want you for SHIBUHOUSE member!</p>
+        <p class="detail">And, now we want you for a SHIBUHOUSE member!</p>
         <a href="mailto:shibuhouseinfo@gmail.com">
           <p class="text">shibuhouseinfo@gmail.com</p>
         </a>
