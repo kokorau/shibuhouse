@@ -32,6 +32,11 @@ export default new Router({
       path: '/event',
       name: 'event',
       component: () => import('./views/Event.vue')
+    },
+    {
+      path: '/form-test',
+      name: 'formTest',
+      component: () => import('./views/FormTest.vue')
     }
   ]
 })
