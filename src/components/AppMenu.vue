@@ -3,7 +3,7 @@
     <menu-toggle @click="isOpen = !isOpen" :isOpen="isOpen || width <= 480"></menu-toggle>
     <!-- MAIN MENU -->
     <div class="page-links">
-      <router-link :to="{ name: 'home' }">
+      <router-link :to="{ name: 'home' }" @click="isOpen = !isOpen">
         <img class="logo" src="@/assets/logo.svg" />
       </router-link>
       <div class="menu">

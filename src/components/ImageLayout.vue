@@ -40,7 +40,7 @@ export default class ImageLayout extends Vue {}
   margin: 0 0 60px 0
 .img
   max-width: 70vw
-  max-height: 80vh
+  max-height: 90vh
 .info
   position: absolute
   left: 20px
@@ -54,7 +54,10 @@ export default class ImageLayout extends Vue {}
   font-size: 24px
 @media screen and (max-width: 480px)
   .articles
-    padding: 15vh 38px 0 38px
+    padding: 15vh 26px 0 26px
+  .card
+    position: relative
+    margin: 0 0 40px 0
   .card:nth-child(2n)
     display: flex
     flex-flow: column
