@@ -103,6 +103,8 @@ export default class AppMenu extends Vue {
     margin: 40px 0 0 0
   .menu > .link
     margin-bottom: 20px
+  .page-links .link
+    font-size: 60px
   .logo
     width: 80px
   .toggle
@@ -120,5 +122,5 @@ export default class AppMenu extends Vue {
   .logo
     width: 140px
   .page-links .link
-    font-size: 54px
+    font-size: 64px
 </style>

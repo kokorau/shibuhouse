@@ -5,20 +5,20 @@
       <h1 class="title">CONTACT</h1>
 
       <div class="paragraph">
-        <p class="text">
+        <p class="detail">
           If you want to get in touch or want to know more, please contact us.
         </p>
 
-        <p class="text">And, we want you for SHIBUHOUSE member!</p>
+        <p class="detail">And, we want you for SHIBUHOUSE member!</p>
         <a href="mailto:shibuhouseinfo@gmail.com">
-          <p class="info">shibuhouseinfo@gmail.com</p>
+          <p class="text">shibuhouseinfo@gmail.com</p>
         </a>
       </div>
 
       <div class="paragraph">
-        <p class="text">CALL ME!! CALL ME!! CALL ME!! CALL ME!! CALL ME!!</p>
+        <p class="detail">CALL ME!! CALL ME!! CALL ME!! CALL ME!!</p>
         <a href="tel:080-3367-6582">
-          <p class="info">080-3367-6582</p>
+          <p class="text">080-3367-6582</p>
         </a>
       </div>
     </article>
@@ -46,9 +46,31 @@ export default class Contact extends Vue {}
   font-size: 42px
   border-bottom: 8px solid #151515
   margin-bottom: 24px
-.text
+.detail
   font-size: 24px
-.info
+.text
   font-size: 36px
   margin: 6px 0 22px
+@media screen and (max-width: 480px)
+  .article
+    padding: 0 0 2vh 10vw
+  .title
+    font-size: 30px
+    margin-bottom: 18px
+    border-bottom: 6px solid #151515
+  .detail
+    font-size: 16px
+  .text
+    font-size: 22px
+    margin: 6px 0 18px
+@media screen and (min-width: 481px) and (max-width: 768px)
+  .title
+    font-size: 36px
+    margin-bottom: 18px
+    border-bottom: 6px solid #151515
+  .detail
+    font-size: 18px
+  .text
+    font-size: 32px
+    margin: 6px 0 18px
 </style>
