@@ -19,24 +19,9 @@ export default new Router({
       component: () => import('./views/About.vue')
     },
     {
-      path: '/member',
-      name: 'member',
-      component: () => import('./views/Member.vue')
-    },
-    {
       path: '/contact',
       name: 'contact',
       component: () => import('./views/Contact.vue')
-    },
-    {
-      path: '/event',
-      name: 'event',
-      component: () => import('./views/Event.vue')
-    },
-    {
-      path: '/form-test',
-      name: 'formTest',
-      component: () => import('./views/FormTest.vue')
     }
   ]
 })
