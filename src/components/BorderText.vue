@@ -17,7 +17,7 @@ export default class BorderText extends Vue {}
   content: ''
   z-index: -1
   position: absolute
-  bottom: 30%
+  bottom: 25%
   width: 0
   height: 20%
   background: #151515
