@@ -41,4 +41,18 @@ export default class Home extends Vue {
 }
 </script>
 
-<style scoped lang="sass"></style>
+<style scoped lang="sass">
+@media screen and (max-width: 480px)
+  .home::after
+    content: 'SHIBUHOUSE'
+    position: fixed
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    z-index: 100
+    text-align: center
+    font-size: 10vh
+    color: transparent
+    background: linear-gradient(3deg, #151515, #151515 47%, transparent 48%, transparent 52%, #151515 53%, #151515)
+    -webkit-background-clip: text
+</style>
