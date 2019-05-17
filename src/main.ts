@@ -10,7 +10,9 @@ import './app.css'
 
 Vue.config.productionTip = false
 
-Vue.use(VueLazyLoad)
+Vue.use(VueLazyLoad, {
+  throttleWait : 400
+})
 
 new Vue({
   router,
