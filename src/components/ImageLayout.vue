@@ -116,6 +116,7 @@ export default class ImageLayout extends Vue {}
   .card
     position: relative
     margin: 0 0 40px 0
+    width: 100%
   .card:nth-child(2n)
     display: flex
     flex-flow: column
