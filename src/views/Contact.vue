@@ -4,6 +4,26 @@
     <article class="article">
       <h1 class="title">CONTACT</h1>
 
+      <form name="contact" netlify>
+        <div>
+          <label for="contact-title"></label>
+          <input name="title" type="text" id="contact-title" required />
+        </div>
+        <div>
+          <label for="contact-name"></label>
+          <input name="title" type="text" id="contact-name" required />
+        </div>
+        <div>
+          <label for="contact-mail"></label>
+          <input name="title" type="email" id="contact-mail" required />
+        </div>
+        <div>
+          <label for="contact-text"></label>
+          <input name="title" type="text" id="contact-text" required />
+        </div>
+        <button type="submit">submit</button>
+      </form>
+
       <div class="paragraph">
         <p class="detail">
           If you want to get in touch or want to know more, please contact us.
