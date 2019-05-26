@@ -5,6 +5,7 @@
       <h1 class="title">CONTACT</h1>
 
       <form name="contact" netlify>
+        <input type="hidden" name="form-name" value="contact" />
         <div>
           <label for="contact-title"></label>
           <input name="title" type="text" id="contact-title" required />
