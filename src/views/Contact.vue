@@ -4,26 +4,7 @@
     <article class="article">
       <h1 class="title">CONTACT</h1>
 
-      <form name="contact" netlify>
-        <input type="hidden" name="form-name" value="contact" />
-        <div>
-          <label for="contact-title"></label>
-          <input name="title" type="text" id="contact-title" required />
-        </div>
-        <div>
-          <label for="contact-name"></label>
-          <input name="title" type="text" id="contact-name" required />
-        </div>
-        <div>
-          <label for="contact-mail"></label>
-          <input name="title" type="email" id="contact-mail" required />
-        </div>
-        <div>
-          <label for="contact-text"></label>
-          <input name="title" type="text" id="contact-text" required />
-        </div>
-        <button type="submit">submit</button>
-      </form>
+      <contact-form></contact-form>
 
       <div class="paragraph">
         <p class="detail">
@@ -48,9 +29,10 @@
 <script>
 import { Component, Vue } from 'vue-property-decorator'
 import AppMenu from '@/components/AppMenu.vue'
+import ContactForm from '../components/ContactForm'
 
 @Component({
-  components: { AppMenu }
+  components: { ContactForm, AppMenu }
 })
 export default class Contact extends Vue {}
 </script>
