@@ -4,59 +4,168 @@
     <article class="article">
       <h1 class="title">CONTACT</h1>
 
-      <contact-form></contact-form>
+      <div class="body">
+        <div class="paragraph">
+          <p class="detail">
+            If you want to get in touch or want to know more, please contact us.
+          </p>
+          <p class="detail">And, now we want you for a SHIBUHOUSE member!</p>
+          <a href="mailto:shibuhouseinfo@gmail.com">
+            <p class="text">shibuhouseinfo@gmail.com</p>
+          </a>
+          <p class="detail">CALL ME!! CALL ME!! CALL ME!! CALL ME!!</p>
+          <a href="tel:080-3367-6582">
+            <p class="text">080-3367-6582</p>
+          </a>
+        </div>
 
-      <div class="paragraph">
-        <p class="detail">
-          If you want to get in touch or want to know more, please contact us.
-        </p>
-
-        <p class="detail">And, now we want you for a SHIBUHOUSE member!</p>
-        <a href="mailto:shibuhouseinfo@gmail.com">
-          <p class="text">shibuhouseinfo@gmail.com</p>
-        </a>
-      </div>
-
-      <div class="paragraph">
-        <p class="detail">CALL ME!! CALL ME!! CALL ME!! CALL ME!!</p>
-        <a href="tel:080-3367-6582">
-          <p class="text">080-3367-6582</p>
-        </a>
+        <form class="form" name="contact">
+          <input type="hidden" name="form-name" value="contact" />
+          <div class="input-group name">
+            <input class="input" name="name" type="text" id="contact-name" placeholder=" " required />
+            <label class="label" for="contact-name">NAME</label>
+          </div>
+          <div class="input-group mail">
+            <input class="input" name="title" type="email" id="contact-mail" placeholder=" " required />
+            <label class="label" for="contact-mail">MAIL</label>
+          </div>
+          <div class="input-group form-text">
+            <textarea class="textarea" name="text" id="contact-text" placeholder=" " required></textarea>
+            <label class="label" for="contact-text">TEXT</label>
+          </div>
+          <div class="submit">
+            <button class="button" type="submit">SUBMIT</button>
+          </div>
+        </form>
       </div>
     </article>
   </div>
 </template>
+
 <script>
 import { Component, Vue } from 'vue-property-decorator'
 import AppMenu from '@/components/AppMenu.vue'
-import ContactForm from '../components/ContactForm'
 
 @Component({
-  components: { ContactForm, AppMenu }
+  components: { AppMenu }
 })
 export default class Contact extends Vue {}
 </script>
 
 <style scoped lang="sass">
 .article
+  display: flex
+  flex-flow: column
+  justify-content: flex-start
+  align-items: stretch
   position: fixed
   bottom: 0
-  width: 100%
-  padding: 0 0 4vh 20vw
+  right: 0
+  width: 80vw
+  margin-bottom: 4vh
   box-sizing: border-box
 .title
   color: #151515
   font-size: 42px
   border-bottom: 8px solid #151515
   margin-bottom: 24px
+  padding-left: 12px
+.body
+  padding: 0 8px
+.paragraph
+  display: flex
+  flex-flow: column
+  justify-content: flex-start
+  align-items: flex-start
 .detail
   font-size: 24px
 .text
   font-size: 36px
   margin: 6px 0 22px
+.form
+  margin: 10px 0
+  width: 700px
+  display: grid
+  grid-template-columns: 1fr 1fr
+  grid-auto-rows: auto auto auto
+  grid-template-areas: "name mail" "text text" "submit submit"
+  gap: 8px
+.input-group
+  position: relative
+input, textarea, button
+  margin: 0
+  padding: 0
+  background: none
+  border: none
+  border-radius: 0
+  outline: none
+  appearance: none
+  box-sizing: border-box
+  font-family: 'Noto Sans JP', sans-serif
+  font-weight: 400
+.input,
+.textarea
+  height: 40px
+  width: 100%
+  background: #eeeeee
+.name
+  grid-area: name
+.mail
+  grid-area: mail
+.input
+  padding: 0 10px
+.form-text
+  grid-area: text
+.textarea
+  transition: 0.2s ease-out
+  padding: 15px 10px
+  resize: none
+  overflow: hidden
+  height: 40px
+  min-height: 40px
+  max-height: 300px
+.textarea:focus,
+.textarea:not(:placeholder-shown)
+  height: 120px
+  resize: vertical
+.label
+  position: absolute
+  margin-left: 10px
+  top: 20px
+  left: 0
+  transform: translate(0, -50%)
+  transition: 0.1s ease-out
+  font-size: 18px
+.input:focus + .label,
+.textarea:focus + .label,
+.input:not(:placeholder-shown) + .label,
+.textarea:not(:placeholder-shown) + .label
+  transform: translate(0, -50%)
+  top: 0
+  font-size: 14px
+.submit
+  grid-area: submit
+  display: flex
+  flex-flow: row
+  justify-content: flex-end
+  align-items: center
+.button
+  font-size: 18px
+  font-weight: bold
+  transition: 0.1s ease-out
+  background: #d5d5d5
+  border: 2px solid #151515
+  color: #151515
+  padding: 3px 6px
+.button:hover
+  background: #151515
+  color: #d5d5d5
 @media screen and (max-width: 480px)
   .article
-    padding: 0 0 2vh 10vw
+    padding: 0
+    width: 100%
+  .article:not(:first-child)
+    padding: 0 10px
   .title
     font-size: 30px
     margin-bottom: 18px
@@ -66,7 +175,27 @@ export default class Contact extends Vue {}
   .text
     font-size: 22px
     margin: 6px 0 18px
+  .form
+    width: 100%
+    grid-template-columns: 1fr
+    grid-auto-rows: auto
+    grid-template-areas: "name" "mail" "text" "submit"
+    gap: 8px
+  .input
+    height: 30px
+  .label
+    top: 15px
+    font-size: 16px
+  .textarea
+    height: 60px
+    min-height: 70px
+    max-height: 300px
+  .button
+    font-size: 12px
+    padding: 3px 6px
 @media screen and (min-width: 481px) and (max-width: 768px)
+  .article
+    width: 90vw
   .title
     font-size: 36px
     margin-bottom: 18px
@@ -76,4 +205,9 @@ export default class Contact extends Vue {}
   .text
     font-size: 32px
     margin: 6px 0 18px
+  .form
+    width: 80vw
+  .textarea:focus,
+  .textarea:not(:placeholder-shown)
+    height: 200px
 </style>
