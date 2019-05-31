@@ -26,7 +26,7 @@
             <label class="label" for="contact-name">NAME</label>
           </div>
           <div class="input-group mail">
-            <input class="input" name="title" type="email" id="contact-mail" placeholder=" " required />
+            <input class="input" name="mail" type="email" id="contact-mail" placeholder=" " required />
             <label class="label" for="contact-mail">MAIL</label>
           </div>
           <div class="input-group form-text">
