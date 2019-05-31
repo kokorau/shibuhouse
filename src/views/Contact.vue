@@ -19,7 +19,7 @@
           </a>
         </div>
 
-        <form class="form" name="contact">
+        <form class="form" name="contact" method="post">
           <input type="hidden" name="form-name" value="contact" />
           <div class="input-group name">
             <input class="input" name="name" type="text" id="contact-name" placeholder=" " required />
