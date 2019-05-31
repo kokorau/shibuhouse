@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP:900|Roboto:900');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,900|Roboto:900');
 
 :root {
     --z-nav: 101;
@@ -9,6 +9,7 @@ body {
     font-family: 'Roboto', 'Noto Sans JP', sans-serif;
     color: #151515;
     background: #d5d5d5;
+    font-weight: 900;
 }
 
 a {

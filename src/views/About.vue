@@ -34,6 +34,9 @@ export default class About extends Vue {}
   font-size: 42px
   border-bottom: 8px solid #151515
   margin-bottom: 24px
+  padding-left: 12px
+.paragraph
+  padding-left: 8px
 .text
   font-size: 24px
 .info
