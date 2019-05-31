@@ -29,7 +29,7 @@
             <input class="input" name="title" type="email" id="contact-mail" placeholder=" " required />
             <label class="label" for="contact-mail">MAIL</label>
           </div>
-          <div class="input-group text">
+          <div class="input-group form-text">
             <textarea class="textarea" name="text" id="contact-text" placeholder=" " required></textarea>
             <label class="label" for="contact-text">TEXT</label>
           </div>
@@ -114,7 +114,7 @@ input, textarea, button
   grid-area: mail
 .input
   padding: 0 10px
-.text
+.form-text
   grid-area: text
 .textarea
   transition: 0.2s ease-out
@@ -181,10 +181,18 @@ input, textarea, button
     grid-auto-rows: auto
     grid-template-areas: "name" "mail" "text" "submit"
     gap: 8px
+  .input
+    height: 30px
+  .label
+    top: 15px
+    font-size: 16px
   .textarea
-    height: 70px
+    height: 60px
     min-height: 70px
     max-height: 300px
+  .button
+    font-size: 12px
+    padding: 3px 6px
 @media screen and (min-width: 481px) and (max-width: 768px)
   .article
     width: 90vw
