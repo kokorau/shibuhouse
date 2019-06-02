@@ -189,16 +189,16 @@ input, textarea, button
   font-weight: bold
   transition: 0.1s ease-out
   background: #d5d5d5
-  border: 2px solid #151515
+  border: 3px solid #151515
   color: #151515
-  padding: 3px 6px
-  width: 144px
+  width: 146px
+  height: 40px
 .button:hover
   background: #151515
   color: #d5d5d5
 .form.sending .button
   $color: #151515
-  animation: stripes-move 5s infinite linear
+  animation: stripes-move 1s infinite linear
   background: repeating-linear-gradient(45deg, $color 0, $color 0.25em, transparent 0.25em, transparent .5em)
   color: adjust-hue($color,180)
 .form.success .button
@@ -239,7 +239,8 @@ input, textarea, button
   .button
     font-size: 12px
     padding: 3px 6px
-    width: 72px
+    width: 74px
+    height: 30px
 @media screen and (min-width: 481px) and (max-width: 768px)
   .article
     width: 90vw
