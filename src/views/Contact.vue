@@ -19,7 +19,7 @@
           </a>
         </div>
 
-        <form class="form" name="contact" @submit.prevent="onSubmit">
+        <form class="form success" :class="[formCondition]" name="contact" @submit.prevent="onSubmit">
           <input type="hidden" name="form-name" value="contact" />
           <div class="input-group name">
             <input class="input" name="name" type="text" id="contact-name" placeholder=" " required v-model="name" />
@@ -34,7 +34,9 @@
             <label class="label" for="contact-text">TEXT</label>
           </div>
           <div class="submit">
-            <button class="button" type="submit">SUBMIT</button>
+            <button class="button" type="submit">
+              {{ formCondition === 'success' ? 'SUCCESS' : formCondition === 'failed' ? 'FAILED' : 'SUBMIT' }}
+            </button>
           </div>
         </form>
       </div>
@@ -54,7 +56,9 @@ export default class Contact extends Vue {
   private name: string = ''
   private mail: string = ''
   private text: string = ''
+  private formCondition: string = 'waiting'
   async onSubmit() {
+    this.formCondition = 'sending'
     const params = new URLSearchParams()
     params.append('form-name', 'contact')
     params.append('name', this.name)
@@ -66,8 +70,10 @@ export default class Contact extends Vue {
       this.name = ''
       this.mail = ''
       this.text = ''
+      this.formCondition = 'success'
     } catch (e) {
       console.log('form: error')
+      this.formCondition = 'failed'
     }
   }
 }
@@ -178,9 +184,20 @@ input, textarea, button
   border: 2px solid #151515
   color: #151515
   padding: 3px 6px
+  width: 144px
 .button:hover
   background: #151515
   color: #d5d5d5
+.form.sending .button
+  $color: #151515
+  animation: stripes-move 5s infinite linear
+  background: repeating-linear-gradient(45deg, $color 0, $color 0.25em, transparent 0.25em, transparent .5em)
+  color: adjust-hue($color,180)
+.form.success .button
+  content: 'SUCCESS'
+@keyframes stripes-move
+  100%
+    background-position: 5em 0px
 @media screen and (max-width: 480px)
   .article
     padding: 0
@@ -214,6 +231,7 @@ input, textarea, button
   .button
     font-size: 12px
     padding: 3px 6px
+    width: 72px
 @media screen and (min-width: 481px) and (max-width: 768px)
   .article
     width: 90vw
