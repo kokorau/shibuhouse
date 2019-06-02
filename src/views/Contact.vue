@@ -19,18 +19,18 @@
           </a>
         </div>
 
-        <form class="form" name="contact" method="post">
+        <form class="form" name="contact" @submit.prevent="onSubmit">
           <input type="hidden" name="form-name" value="contact" />
           <div class="input-group name">
-            <input class="input" name="name" type="text" id="contact-name" placeholder=" " required />
+            <input class="input" name="name" type="text" id="contact-name" placeholder=" " required v-model="name" />
             <label class="label" for="contact-name">NAME</label>
           </div>
           <div class="input-group mail">
-            <input class="input" name="mail" type="email" id="contact-mail" placeholder=" " required />
+            <input class="input" name="mail" type="email" id="contact-mail" placeholder=" " required v-model="mail" />
             <label class="label" for="contact-mail">MAIL</label>
           </div>
           <div class="input-group form-text">
-            <textarea class="textarea" name="text" id="contact-text" placeholder=" " required></textarea>
+            <textarea class="textarea" name="text" id="contact-text" placeholder=" " required v-model="text"></textarea>
             <label class="label" for="contact-text">TEXT</label>
           </div>
           <div class="submit">
@@ -42,14 +42,35 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import axios from 'axios'
 import { Component, Vue } from 'vue-property-decorator'
 import AppMenu from '@/components/AppMenu.vue'
 
 @Component({
   components: { AppMenu }
 })
-export default class Contact extends Vue {}
+export default class Contact extends Vue {
+  private name: string = ''
+  private mail: string = ''
+  private text: string = ''
+  async onSubmit() {
+    const params = new URLSearchParams()
+    params.append('form-name', 'contact')
+    params.append('name', this.name)
+    params.append('mail', this.mail)
+    params.append('text', this.text)
+    try {
+      await axios.post('/', params)
+      console.log('form: success')
+      this.name = ''
+      this.mail = ''
+      this.text = ''
+    } catch (e) {
+      console.log('form: error')
+    }
+  }
+}
 </script>
 
 <style scoped lang="sass">
