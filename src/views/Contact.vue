@@ -35,7 +35,15 @@
           </div>
           <div class="submit">
             <button class="button" type="submit">
-              {{ formCondition === 'success' ? 'SUCCESS' : formCondition === 'failed' ? 'FAILED' : 'SUBMIT' }}
+              {{
+                formCondition === 'sending'
+                  ? ''
+                  : formCondition === 'success'
+                  ? 'SUCCESS'
+                  : formCondition === 'failed'
+                  ? 'FAILED'
+                  : 'SUBMIT'
+              }}
             </button>
           </div>
         </form>
