@@ -30,10 +30,10 @@ export default class Home extends Vue {
   ]
   async mounted() {
     const imageRef = await client.getEntries({
-      content_type: 'home'
+      content_type: 'home',
+      order: '-sys.createdAt'
     })
     this.images = imageRef.items.map(i => ({
-      // webpsrc: i.fields.image.fields.file.url,
       // @ts-ignore
       src: i.fields.image.fields.file.url
     }))
