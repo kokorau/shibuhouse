@@ -1,8 +1,8 @@
 <template>
   <button class="toggle" @click="$emit('click')">
     <svg width="40" height="40">
-      <rect x="5" y="8" width="30" height="8" fill="#151515"></rect>
-      <rect x="5" y="24" width="30" height="8" fill="#151515"></rect>
+      <rect x="5" y="8" width="30" height="8" fill="#151515" />
+      <rect x="5" y="24" width="30" height="8" fill="#151515" />
     </svg>
   </button>
 </template>

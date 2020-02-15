@@ -1,6 +1,6 @@
 <template>
   <div class="articles">
-    <slot></slot>
+    <slot />
     <article class="card" v-for="img of images" :key="img.src" :to="img.to">
       <div class="photo">
         <img class="img" v-lazy="img.src" :alt="img.title" />

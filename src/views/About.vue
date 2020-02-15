@@ -1,6 +1,6 @@
 <template>
   <div>
-    <app-menu></app-menu>
+    <app-menu />
     <article class="article">
       <h1 class="title">ABOUT</h1>
       <div class="paragraph">

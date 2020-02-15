@@ -1,6 +1,6 @@
 <template>
   <nav class="nav" :class="{ active: width > 480 || isOpen }">
-    <menu-toggle @click="isOpen = !isOpen" :isOpen="isOpen || width <= 480"></menu-toggle>
+    <menu-toggle @click="isOpen = !isOpen" :isOpen="isOpen || width <= 480" />
     <!-- MAIN MENU -->
     <div class="page-links">
       <router-link :to="{ name: 'home' }" @click="isOpen = !isOpen">

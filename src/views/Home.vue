@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <AppMenu></AppMenu>
-    <ImageLayout class="images" :images="images"></ImageLayout>
+    <AppMenu />
+    <ImageLayout class="images" :images="images" />
   </div>
 </template>
 
