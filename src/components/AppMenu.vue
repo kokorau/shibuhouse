@@ -13,6 +13,9 @@
         <router-link class="link" :to="{ name: 'contact' }">
           <border-text>CONTACT</border-text>
         </router-link>
+        <router-link class="link" :to="{ name: 'member' }">
+          <border-text>MEMBER</border-text>
+        </router-link>
       </div>
     </div>
     <!-- SNS -->
