@@ -27,7 +27,7 @@ import AppMenu from '../components/AppMenu.vue'
 interface Member {
   name: string
   image: string
-  style: {} // FIXME: VueのStyleの型ってあるの?
+  style: {}
 }
 
 const members: Member[] = [
@@ -63,6 +63,19 @@ const members: Member[] = [
     }
   },
   {
+    name: '紫草',
+    image: require('@/assets/member/sigsa.png'),
+    style: {
+      width: '100vw',
+      top: 0
+    }
+  },
+  {
+    name: 'naoki fujita',
+    image: '',
+    style: {}
+  },
+  {
     name: 'かいざー',
     image: require(`@/assets/member/kaizer.png`),
     style: {
@@ -72,11 +85,6 @@ const members: Member[] = [
   },
   {
     name: 'キタザワキュー',
-    image: '',
-    style: {}
-  },
-  {
-    name: 'naoki fujita',
     image: '',
     style: {}
   },
@@ -97,6 +105,16 @@ const members: Member[] = [
   },
   {
     name: 'もちこ',
+    image: '',
+    style: {}
+  },
+  {
+    name: 'ryohei',
+    image: '',
+    style: {}
+  },
+  {
+    name: 'ちけ',
     image: '',
     style: {}
   }
@@ -136,8 +154,10 @@ export default Vue.extend({
 .name {
   position: relative;
   display: inline-block;
-  font-size: 28px;
-  margin-top: 8px;
+  font-size: 32px;
+  margin-top: 20px;
+  transform-origin: left center;
+  transform: rotate(25deg);
 }
 .name::before {
   content: '';
