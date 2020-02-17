@@ -32,6 +32,11 @@ export default new Router({
       path: '/archive',
       name: 'archive',
       component: () => import('./views/Archive.vue')
+    },
+    {
+      path: '/archive/:slug',
+      name: 'archive:slug',
+      component: () => import('./views/Archive_detail.vue')
     }
   ]
 })

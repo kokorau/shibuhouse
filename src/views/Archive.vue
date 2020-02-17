@@ -10,7 +10,9 @@ import Vue from 'vue'
 import AppMenu from '@/components/AppMenu.vue'
 import client from '@/module/contentful'
 
-interface Archive {}
+interface Archive {
+  title: string
+}
 
 export default Vue.extend({
   components: {
@@ -25,10 +27,12 @@ export default Vue.extend({
   },
   async mounted() {
     const archiveRef = await client.getEntries({
-      contentType: 'archive',
+      content_type: 'archive',
       order: '-sys.createdAt'
     })
-    this.archives = archiveRef.items
+    this.archives = archiveRef.items.map(i => ({
+      title: i.fields.title
+    }))
   }
 })
 </script>
