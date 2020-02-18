@@ -1,7 +1,6 @@
 <template>
   <div class="home">
     <AppMenu />
-    <h1>ARCHIVE</h1>
   </div>
 </template>
 
@@ -12,6 +11,7 @@ import client from '@/module/contentful'
 
 interface Archive {
   title: string
+  src: string
 }
 
 export default Vue.extend({
@@ -30,9 +30,15 @@ export default Vue.extend({
       content_type: 'archive',
       order: '-sys.createdAt'
     })
-    this.archives = archiveRef.items.map(i => ({
-      title: i.fields.title
-    }))
+    this.archives = archiveRef.items.map(i => {
+      console.log(i)
+      return {
+        // @ts-ignore
+        title: i.fields.title,
+        // @ts-ignore
+        src: i.fields.heroImage.fields.file.url
+      }
+    })
   }
 })
 </script>

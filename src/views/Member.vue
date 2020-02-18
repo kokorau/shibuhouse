@@ -155,9 +155,7 @@ export default Vue.extend({
   position: relative;
   display: inline-block;
   font-size: 32px;
-  margin-top: 20px;
-  transform-origin: left center;
-  transform: rotate(25deg);
+  margin-top: 15px;
 }
 .name::before {
   content: '';

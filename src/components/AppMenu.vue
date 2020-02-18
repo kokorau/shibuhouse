@@ -16,9 +16,9 @@
         <router-link class="link" :to="{ name: 'member' }">
           <border-text>MEMBER</border-text>
         </router-link>
-        <!--        <router-link class="link" :to="{ name: 'archive' }">-->
-        <!--          <border-text>ARCHIVE</border-text>-->
-        <!--        </router-link>-->
+        <router-link class="link" :to="{ name: 'archive' }">
+          <border-text>ARCHIVE</border-text>
+        </router-link>
       </div>
     </div>
     <!-- SNS -->
