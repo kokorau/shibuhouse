@@ -1,6 +1,6 @@
 <template>
   <div>
-    <app-menu></app-menu>
+    <app-menu />
     <article class="article">
       <h1 class="title">CONTACT</h1>
 
@@ -30,7 +30,7 @@
             <label class="label" for="contact-mail">MAIL</label>
           </div>
           <div class="input-group form-text">
-            <textarea class="textarea" name="text" id="contact-text" placeholder=" " required v-model="text"></textarea>
+            <textarea class="textarea" name="text" id="contact-text" placeholder=" " required v-model="text" />
             <label class="label" for="contact-text">TEXT</label>
           </div>
           <div class="submit">

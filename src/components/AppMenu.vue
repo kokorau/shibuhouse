@@ -1,6 +1,6 @@
 <template>
   <nav class="nav" :class="{ active: width > 480 || isOpen }">
-    <menu-toggle @click="isOpen = !isOpen" :isOpen="isOpen || width <= 480"></menu-toggle>
+    <menu-toggle @click="isOpen = !isOpen" :isOpen="isOpen || width <= 480" />
     <!-- MAIN MENU -->
     <div class="page-links">
       <router-link :to="{ name: 'home' }" @click="isOpen = !isOpen">
@@ -12,6 +12,12 @@
         </router-link>
         <router-link class="link" :to="{ name: 'contact' }">
           <border-text>CONTACT</border-text>
+        </router-link>
+        <router-link class="link" :to="{ name: 'member' }">
+          <border-text>MEMBER</border-text>
+        </router-link>
+        <router-link class="link" :to="{ name: 'archive' }">
+          <border-text>ARCHIVE</border-text>
         </router-link>
       </div>
     </div>
@@ -30,25 +36,34 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import Vue from 'vue'
 import BorderText from '@/components/BorderText.vue'
 import MenuToggle from '@/components/MenuToggle.vue'
-@Component({
-  components: { MenuToggle, BorderText }
-})
-export default class AppMenu extends Vue {
-  isOpen = false
-  width = window.innerWidth
+
+export default Vue.extend({
+  components: { MenuToggle, BorderText },
+  data(): {
+    isOpen: boolean
+    width: number
+  } {
+    return {
+      isOpen: false,
+      width: 0
+    }
+  },
   mounted() {
-    window.addEventListener('resize', this.updateWindow)
-  }
-  destoroyed() {
-    window.removeEventListener('resize', this.updateWindow)
-  }
-  updateWindow() {
     this.width = window.innerWidth
+    window.addEventListener('resize', this.updateWindow)
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.updateWindow)
+  },
+  methods: {
+    updateWindow() {
+      this.width = window.innerWidth
+    }
   }
-}
+})
 </script>
 
 <style scoped lang="sass">

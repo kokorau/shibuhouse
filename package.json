@@ -5,13 +5,15 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@contentful/rich-text-html-renderer": "^13.4.0",
+    "@contentful/rich-text-types": "^14.1.0",
     "axios": "^0.18.0",
     "contentful": "^7.5.1",
-    "core-js": "^2.6.5",
+    "core-js": "^3.6.4",
     "postprocessing": "^6.4.0",
     "three": "^0.104.0",
     "vue": "^2.6.10",
@@ -23,26 +25,36 @@
   },
   "devDependencies": {
     "@types/jest": "^23.1.4",
-    "@vue/cli-plugin-babel": "^3.7.0",
-    "@vue/cli-plugin-eslint": "^3.7.0",
-    "@vue/cli-plugin-typescript": "^3.7.0",
-    "@vue/cli-plugin-unit-jest": "^3.7.0",
-    "@vue/cli-service": "^3.7.0",
-    "@vue/eslint-config-prettier": "^4.0.1",
-    "@vue/eslint-config-typescript": "^4.0.0",
+    "@typescript-eslint/eslint-plugin": "^2.18.0",
+    "@typescript-eslint/parser": "^2.18.0",
+    "@vue/cli-plugin-babel": "^4.2.2",
+    "@vue/cli-plugin-eslint": "^4.2.2",
+    "@vue/cli-plugin-router": "^4.2.2",
+    "@vue/cli-plugin-typescript": "^4.2.2",
+    "@vue/cli-plugin-unit-jest": "^4.2.2",
+    "@vue/cli-service": "^4.2.2",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "@vue/eslint-config-typescript": "^5.0.1",
     "@vue/test-utils": "1.0.0-beta.29",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
-    "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.0.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-vue": "^6.1.2",
     "glslify-loader": "^2.0.0",
     "lint-staged": "^8.1.5",
+    "prettier": "^1.19.1",
     "raw-loader": "^2.0.0",
     "sass": "^1.18.0",
     "sass-loader": "^7.1.0",
     "ts-jest": "^23.0.0",
-    "typescript": "^3.4.3",
+    "typescript": "~3.7.5",
     "vue-template-compiler": "^2.5.21"
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "parser": "@typescript-eslint/parser"
+    }
   },
   "gitHooks": {
     "pre-commit": "lint-staged"

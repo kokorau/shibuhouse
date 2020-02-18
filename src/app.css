@@ -1,18 +1,18 @@
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,900|Roboto:900');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,900|Roboto:400,900');
 
 :root {
-    --z-nav: 101;
-    --z-nav-toggle: 102;
+  --z-nav: 101;
+  --z-nav-toggle: 102;
 }
 
 body {
-    font-family: 'Roboto', 'Noto Sans JP', sans-serif;
-    color: #151515;
-    background: #d5d5d5;
-    font-weight: 900;
+  font-family: 'Roboto', 'Noto Sans JP', sans-serif;
+  color: #151515;
+  background: #d5d5d5;
+  font-weight: bold;
 }
 
 a {
-    text-decoration: none;
-    color: inherit;
+  text-decoration: none;
+  color: inherit;
 }

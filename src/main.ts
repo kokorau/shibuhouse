@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueLazyLoad from 'vue-lazyload'
-import './plugins/axios'
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -11,7 +10,7 @@ import './app.css'
 Vue.config.productionTip = false
 
 Vue.use(VueLazyLoad, {
-  throttleWait : 400
+  throttleWait: 400
 })
 
 new Vue({
