@@ -1,6 +1,11 @@
 <template>
-  <div class="home">
+  <div :class="$style.home">
     <AppMenu />
+    <ul :class="$style.links">
+      <li :class="$style.link">
+        <router-link :to="{ name: 'archive_detail', params: { slug: 'hand-to-mouth' } }">Hand To Mouth</router-link>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -36,6 +41,8 @@ export default Vue.extend({
         // @ts-ignore
         title: i.fields.title,
         // @ts-ignore
+        slug: i.fields.slug,
+        // @ts-ignore
         src: i.fields.heroImage.fields.file.url
       }
     })
@@ -43,4 +50,15 @@ export default Vue.extend({
 })
 </script>
 
-<style lang="postcss" module></style>
+<style lang="postcss" module>
+/* XXX */
+.home {
+}
+.links {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+.link {
+}
+</style>
