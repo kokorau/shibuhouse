@@ -44,10 +44,15 @@ export default Vue.extend({
       content_type: 'archive',
       'fields.slug': this.$route.params.slug
     })
+    // @ts-ignore
     this.archive = archiveRef.items[0].fields
+    // @ts-ignore
     this.title = archiveRef.items[0].fields.title
+    // @ts-ignore
     this.date = archiveRef.items[0].fields.date
+    // @ts-ignore
     this.body = this.toHtmlString(archiveRef.items[0].fields.body)
+    // @ts-ignore
     this.summary = this.toHtmlString(archiveRef.items[0].fields.summary)
   },
   methods: {
