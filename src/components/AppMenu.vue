@@ -26,6 +26,11 @@
         </a>
       </div>
     </div>
+    <div class="hikkoshi">
+      <a class="hikkoshi-link" href="https://hikkoshi.shibuhouse.com" target="_blank">
+        <border-text>渋家引っ越します >>></border-text>
+      </a>
+    </div>
   </nav>
 </template>
 
@@ -85,6 +90,12 @@ export default class AppMenu extends Vue {
 .outer-links .link
   font-size: 28px
   margin-bottom: 14px
+.hikkoshi-link
+  font-size: 50px
+.hikkoshi
+  position: fixed
+  bottom: 20px
+  right: 20px
 @media screen and (max-width: 480px)
   .page-links
     position: relative
@@ -118,9 +129,19 @@ export default class AppMenu extends Vue {
     background: #d5d5d5
   .nav.active .link
     display: flex
+  .hikkoshi-link
+    font-size: 26px
+  .hikkoshi
+    position: fixed
+    bottom: 20px
+    right: 20px
 @media screen and (min-width: 481px) and (max-width: 768px)
   .logo
     width: 140px
   .page-links .link
     font-size: 64px
+  .hikkoshi
+    position: fixed
+    bottom: 20px
+    left: 20px
 </style>
