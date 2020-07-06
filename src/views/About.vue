@@ -1,5 +1,6 @@
 <template>
   <div>
+    <canvas id="canvas" ref="canvas" />
     <app-menu />
     <article class="article">
       <h1 class="title">ABOUT</h1>
@@ -12,14 +13,73 @@
     </article>
   </div>
 </template>
-<script>
-import { Component, Vue } from 'vue-property-decorator'
+
+<script lang="ts">
+import Vue from 'vue'
+import * as THREE from 'three'
 import AppMenu from '@/components/AppMenu.vue'
 
-@Component({
-  components: { AppMenu }
+export default Vue.extend({
+  components: { AppMenu },
+  data(): {
+    renderer: THREE.WebGLRenderer
+    scene: THREE.Scene
+    camera: THREE.Camera
+    cube: THREE.Mesh
+  } {
+    return {
+      renderer: null,
+      scene: null,
+      camera: null,
+      cube: null,
+    }
+  },
+  mounted(): void {
+    const canvas = this.$refs.canvas as HTMLCanvasElement
+
+    const scene = new THREE.Scene()
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
+    camera.position.z = 1.5
+
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true })
+    renderer.setSize(window.innerWidth, window.innerHeight)
+
+    renderer.setClearColor('#ff00ff', 0)
+    const loader = new THREE.TextureLoader()
+    const bumpMap = loader.load(require('@/assets/map.jpg'))
+    const material = new THREE.MeshNormalMaterial({
+      bumpMap,
+    })
+    const geometry = new THREE.BoxGeometry()
+    const cube = new THREE.Mesh(geometry, material)
+
+    scene.add(cube)
+
+    window.addEventListener('resize', this.onResize)
+
+    const animate = function () {
+      requestAnimationFrame(animate)
+
+      cube.rotation.x += 0.006
+      cube.rotation.y += 0.006
+
+      renderer.render(scene, camera)
+    }
+
+    animate()
+  },
+  methods: {
+    onResize() {
+      const { innerHeight, innerWidth } = window
+
+      // this.renderer.setPixelRatio(window.devicePixelRatio)
+      this.renderer.setSize(innerWidth, innerHeight)
+
+      this.camera.aspect = innerWidth / innerHeight
+      this.camera.updateProjectionMatrix()
+    },
+  },
 })
-export default class About extends Vue {}
 </script>
 
 <style scoped lang="sass">
