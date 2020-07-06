@@ -26,6 +26,11 @@
         </a>
       </div>
     </div>
+    <div class="info">
+      <a class="info-link" href="https://forms.gle/NZtG4NUZeJ1egd7c9" target="_blank">
+        <border-text>新メンバー募集中 >>></border-text>
+      </a>
+    </div>
   </nav>
 </template>
 
@@ -34,7 +39,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 import BorderText from '@/components/BorderText.vue'
 import MenuToggle from '@/components/MenuToggle.vue'
 @Component({
-  components: { MenuToggle, BorderText }
+  components: { MenuToggle, BorderText },
 })
 export default class AppMenu extends Vue {
   isOpen = false
@@ -85,9 +90,9 @@ export default class AppMenu extends Vue {
 .outer-links .link
   font-size: 28px
   margin-bottom: 14px
-.hikkoshi-link
-  font-size: 50px
-.hikkoshi
+.info-link
+  font-size: 32px
+.info
   position: fixed
   bottom: 20px
   right: 20px
@@ -124,12 +129,18 @@ export default class AppMenu extends Vue {
     background: #d5d5d5
   .nav.active .link
     display: flex
+  .info-link
+    font-size: 20px
+  .info
+    position: fixed
+    bottom: 20px
+    right: 20px
 @media screen and (min-width: 481px) and (max-width: 768px)
   .logo
     width: 140px
   .page-links .link
     font-size: 64px
-  .hikkoshi
+  .info
     position: fixed
     bottom: 20px
     left: 20px
