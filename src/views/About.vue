@@ -21,17 +21,25 @@ import AppMenu from '@/components/AppMenu.vue'
 
 export default Vue.extend({
   components: { AppMenu },
+  data() {
+    return {
+      width: 0,
+      height: 0,
+    }
+  },
   mounted(): void {
     const { innerWidth, innerHeight } = window
+    this.width = innerWidth
+    this.height = innerHeight
     const canvas = this.$refs.canvas
     const renderer = new THREE.WebGLRenderer({ canvas })
     renderer.setSize(window.innerWidth, window.innerHeight)
     const scene = new THREE.Scene()
     const camera = new THREE.OrthographicCamera(
-      -innerWidth / 2,
-      innerWidth / 2,
-      innerHeight / 2,
-      -innerHeight / 2,
+      -this.width / 2,
+      this.width / 2,
+      this.height / 2,
+      -this.height / 2,
       1,
       1000
     )
@@ -39,7 +47,7 @@ export default Vue.extend({
     const loader = new THREE.TextureLoader()
     const uniforms = {
       time: { value: 0 },
-      resolution: { value: new THREE.Vector2(innerWidth, innerHeight) },
+      resolution: { value: new THREE.Vector2(this.width, this.height) },
       uTex: { value: loader.load(require('@/assets/sky.jpg')) },
     }
     const screen = new THREE.Mesh(
@@ -66,16 +74,22 @@ export default Vue.extend({
         void main(){
           vec2 p = (vUv - 0.5) * 50.0;
           // p = vec2(p.x + wave(p.x + sin(p.y)) * 5.0, p.y + wave(p.x) * 10.0 * exp(-p.y * 0.13));
-          p = vec2(p.x + wave(p.y + sin(p.x)) * 3.0, p.y + wave(p.x) * 10.0 * exp(-p.y * 0.13));
+          p = vec2(
+            p.x + wave(p.y + sin(p.x)) * 3.0,
+            p.y + wave(p.x) * 10.0 * exp(-p.y * 0.13)
+          );
           float sig_sin = wave(
-            (p.x + sigmoid(-p.y + p.y, 1.0)
-              * wave(-p.y * sigmoid(p.x, 0.1) - time * 1.0))
-              * sigmoid(p.x, 0.045)
+            (p.x + sigmoid(p.y, 1.0)
+              * wave(
+                -p.y * sigmoid(p.x, 0.1) * 6.0
+                - (time + wave(time)) * (wave(p.x) * 0.3 + 2.0) * 0.5)
+              )
+              * sigmoid(p.x + p.y, 0.035)
               * 15.0
           );
-          sig_sin = sig_sin * sigmoid(p.x-p.y, 0.2); // 全体を斜めに減衰
-          // vec3 color = vec3(sig_sin);
-          vec2 uv = vUv + sig_sin * 0.4;
+          sig_sin = sig_sin * sigmoid(p.x-p.y, 0.1); // 全体を斜めに減衰
+          // vec3 color = vec3((sig_sin + 0.5) * 0.5); // 確認用(-1 ~ 1)
+          vec2 uv = vUv + sig_sin * 0.08; // filterの強度
           vec3 color = texture2D(uTex, uv).rgb;
           gl_FragColor = vec4(color, 1.0);
         }`,
@@ -86,7 +100,10 @@ export default Vue.extend({
 
     const onResize = () => {
       console.log('resize')
-      renderer.setSize(innerWidth, innerHeight)
+      this.width = window.innerWidth
+      this.height = window.innerHeight
+      renderer.setSize(this.width, this.height)
+      uniforms.resolution.value = new THREE.Vector2(this.width, this.height)
     }
 
     window.addEventListener('resize', onResize)
