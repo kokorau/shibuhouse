@@ -1,9 +1,9 @@
 <template>
   <div>
+    <canvas id="canvas" ref="canvas" />
     <app-menu />
     <article class="article">
       <h1 class="title">CONTACT</h1>
-
       <div class="body">
         <div class="paragraph">
           <p class="detail">
@@ -54,37 +54,105 @@
 
 <script lang="ts">
 import axios from 'axios'
-import { Component, Vue } from 'vue-property-decorator'
+import Vue from 'vue'
 import AppMenu from '@/components/AppMenu.vue'
+import * as THREE from 'three'
 
-@Component({
-  components: { AppMenu }
-})
-export default class Contact extends Vue {
-  private name: string = ''
-  private mail: string = ''
-  private text: string = ''
-  private formCondition: string = 'waiting'
-  async onSubmit() {
-    this.formCondition = 'sending'
-    const params = new URLSearchParams()
-    params.append('form-name', 'contact')
-    params.append('name', this.name)
-    params.append('mail', this.mail)
-    params.append('text', this.text)
-    try {
-      await axios.post('/', params)
-      console.log('form: success')
-      this.name = ''
-      this.mail = ''
-      this.text = ''
-      this.formCondition = 'success'
-    } catch (e) {
-      console.log('form: error')
-      this.formCondition = 'failed'
+export default Vue.extend({
+  components: {
+    AppMenu,
+  },
+  data(): {
+    name: string
+    mail: string
+    text: string
+    formCondition: string
+    renderer: THREE.WebGLRenderer
+    scene: THREE.Scene
+    camera: THREE.Camera
+    cube: THREE.Mesh
+  } {
+    return {
+      name: null,
+      mail: null,
+      text: null,
+      formCondition: 'waiting',
+      renderer: null,
+      scene: null,
+      camera: null,
+      cube: null,
     }
-  }
-}
+  },
+  mounted(): void {
+    const canvas = this.$refs.canvas as HTMLCanvasElement
+    const { innerHeight, innerWidth } = window
+    const scene = new THREE.Scene()
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
+    camera.position.z = 6
+
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true })
+    renderer.setSize(innerWidth, innerHeight)
+
+    renderer.setClearColor('#ff00ff', 0)
+    const loader = new THREE.TextureLoader()
+    const bumpMap = loader.load(require('@/assets/map.jpg'))
+    const material = new THREE.MeshPhongMaterial({
+      bumpMap,
+    })
+    const geometry = new THREE.BoxGeometry(4, 4, 4)
+    const cube = new THREE.Mesh(geometry, material)
+    scene.add(cube)
+
+    const light1 = new THREE.PointLight(0xf0fff0)
+    light1.position.set(4, 4, 2)
+    scene.add(light1)
+
+    const light2 = new THREE.PointLight(0x87cefa)
+    light2.position.set(-4, 0, 10)
+    scene.add(light2)
+
+    window.addEventListener('resize', () => {
+      const { innerHeight, innerWidth } = window
+
+      renderer.setSize(innerWidth, innerHeight)
+
+      camera.aspect = innerWidth / innerHeight
+      camera.updateProjectionMatrix()
+    })
+
+    const animate = function () {
+      requestAnimationFrame(animate)
+
+      cube.rotation.x += 0.004
+      cube.rotation.y += 0.004
+
+      renderer.render(scene, camera)
+    }
+
+    animate()
+  },
+  methods: {
+    async onSubmit() {
+      this.formCondition = 'sending'
+      const params = new URLSearchParams()
+      params.append('form-name', 'contact')
+      params.append('name', this.name)
+      params.append('mail', this.mail)
+      params.append('text', this.text)
+      try {
+        await axios.post('/', params)
+        console.log('form: success')
+        this.name = ''
+        this.mail = ''
+        this.text = ''
+        this.formCondition = 'success'
+      } catch (e) {
+        console.log('form: error')
+        this.formCondition = 'failed'
+      }
+    },
+  },
+})
 </script>
 
 <style scoped lang="sass">

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <canvas id="canvas" ref="canvas" />
+    <canvas class="canvas" ref="canvas" />
     <app-menu />
     <article class="article">
       <h1 class="title">ABOUT</h1>
@@ -21,63 +21,83 @@ import AppMenu from '@/components/AppMenu.vue'
 
 export default Vue.extend({
   components: { AppMenu },
-  data(): {
-    renderer: THREE.WebGLRenderer
-    scene: THREE.Scene
-    camera: THREE.Camera
-    cube: THREE.Mesh
-  } {
-    return {
-      renderer: null,
-      scene: null,
-      camera: null,
-      cube: null,
-    }
-  },
   mounted(): void {
-    const canvas = this.$refs.canvas as HTMLCanvasElement
-
-    const scene = new THREE.Scene()
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
-    camera.position.z = 1.5
-
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true })
+    const { innerWidth, innerHeight } = window
+    const canvas = this.$refs.canvas
+    const renderer = new THREE.WebGLRenderer({ canvas })
     renderer.setSize(window.innerWidth, window.innerHeight)
-
-    renderer.setClearColor('#ff00ff', 0)
+    const scene = new THREE.Scene()
+    const camera = new THREE.OrthographicCamera(
+      -innerWidth / 2,
+      innerWidth / 2,
+      innerHeight / 2,
+      -innerHeight / 2,
+      1,
+      1000
+    )
+    const clock = new THREE.Clock()
     const loader = new THREE.TextureLoader()
-    const bumpMap = loader.load(require('@/assets/map.jpg'))
-    const material = new THREE.MeshNormalMaterial({
-      bumpMap,
-    })
-    const geometry = new THREE.BoxGeometry()
-    const cube = new THREE.Mesh(geometry, material)
+    const uniforms = {
+      time: { value: 0 },
+      resolution: { value: new THREE.Vector2(innerWidth, innerHeight) },
+      uTex: { value: loader.load(require('@/assets/sky.jpg')) },
+    }
+    const screen = new THREE.Mesh(
+      new THREE.PlaneGeometry(2, 2),
+      new THREE.ShaderMaterial({
+        uniforms,
+        vertexShader: `
+        varying vec2 vUv;
+        void main(){
+          vUv = uv;
+          gl_Position = vec4( position, 1.0 );
+        }`,
+        fragmentShader: `
+        varying vec2 vUv;
+        uniform float time;
+        uniform vec2 resolution;
+        uniform sampler2D uTex;
+        float sigmoid(float x, float k) {
+          return 1. / (1.+exp(-(k * x)));
+        }
+        float wave(float x) {
+          return sin(x) * 0.2 + sin(0.5 * x) * 0.3 + sin(0.2 * x) * 0.4 + sin(1.3 * x) * 0.1;
+        }
+        void main(){
+          vec2 p = (vUv - 0.5) * 50.0;
+          // p = vec2(p.x + wave(p.x + sin(p.y)) * 5.0, p.y + wave(p.x) * 10.0 * exp(-p.y * 0.13));
+          p = vec2(p.x + wave(p.y + sin(p.x)) * 3.0, p.y + wave(p.x) * 10.0 * exp(-p.y * 0.13));
+          float sig_sin = wave(
+            (p.x + sigmoid(-p.y + p.y, 1.0)
+              * wave(-p.y * sigmoid(p.x, 0.1) - time * 1.0))
+              * sigmoid(p.x, 0.045)
+              * 15.0
+          );
+          sig_sin = sig_sin * sigmoid(p.x-p.y, 0.2); // 全体を斜めに減衰
+          // vec3 color = vec3(sig_sin);
+          vec2 uv = vUv + sig_sin * 0.4;
+          vec3 color = texture2D(uTex, uv).rgb;
+          gl_FragColor = vec4(color, 1.0);
+        }`,
+      })
+    )
+    screen.position.set(0, 0, -1)
+    scene.add(screen)
 
-    scene.add(cube)
+    const onResize = () => {
+      console.log('resize')
+      renderer.setSize(innerWidth, innerHeight)
+    }
 
-    window.addEventListener('resize', this.onResize)
+    window.addEventListener('resize', onResize)
 
-    const animate = function () {
+    const animate = () => {
       requestAnimationFrame(animate)
-
-      cube.rotation.x += 0.006
-      cube.rotation.y += 0.006
-
+      uniforms.time.value += clock.getDelta()
       renderer.render(scene, camera)
     }
 
     animate()
-  },
-  methods: {
-    onResize() {
-      const { innerHeight, innerWidth } = window
-
-      // this.renderer.setPixelRatio(window.devicePixelRatio)
-      this.renderer.setSize(innerWidth, innerHeight)
-
-      this.camera.aspect = innerWidth / innerHeight
-      this.camera.updateProjectionMatrix()
-    },
   },
 })
 </script>
@@ -102,6 +122,9 @@ export default Vue.extend({
 .info
   font-size: 36px
   margin: 6px 0 22px
+.canvas
+  width: 100%
+  height: 100%
 @media screen and (max-width: 480px)
   .article
     padding: 0 0 4vh 10vw
