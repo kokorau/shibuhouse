@@ -85,11 +85,11 @@ export default Vue.extend({
                 - (time + wave(time)) * (wave(p.x) * 0.3 + 2.0) * 0.5)
               )
               * sigmoid(p.x + p.y, 0.035)
-              * 15.0
+              * 10.0
           );
           sig_sin = sig_sin * sigmoid(p.x-p.y, 0.1); // 全体を斜めに減衰
           // vec3 color = vec3((sig_sin + 0.5) * 0.5); // 確認用(-1 ~ 1)
-          vec2 uv = vUv + sig_sin * 0.08; // filterの強度
+          vec2 uv = vUv + sig_sin * 0.04; // filterの強度
           vec3 color = texture2D(uTex, uv).rgb;
           gl_FragColor = vec4(color, 1.0);
         }`,
