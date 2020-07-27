@@ -19,6 +19,11 @@ export default new Router({
       component: () => import('./views/About.vue')
     },
     {
+      path: '/archive',
+      name: 'archive',
+      component: () => import('./views/Archive.vue')
+    },
+    {
       path: '/contact',
       name: 'contact',
       component: () => import('./views/Contact.vue')
